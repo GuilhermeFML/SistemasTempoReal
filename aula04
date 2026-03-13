@@ -1,0 +1,37 @@
+//link wokwi - https://wokwi.com/projects/458420611899811841
+//Guilherme Fernandes Miguel Lorenzi RM93525
+#include <Arduino.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+void TaskHigh(void *pv) 
+{
+    Serial.println("[HIGH] prio = 1 - executando");
+  while(true){
+    //Serial.println("[HIGH] prio = 1 - executando");
+    //vTaskDelay(pdMS_TO_TICKS(1000));
+  
+  }
+}
+
+void TaskLow(void *pv) 
+{
+  while(true){
+    Serial.println("[LOW] prio = 1 - executando");
+    vTaskDelay(pdMS_TO_TICKS(1000));
+  
+  }
+}
+
+void setup() 
+{
+  Serial.begin(115200);
+
+  xTaskCreate(TaskHigh,"High", 2048, nullptr, 1, nullptr);
+  xTaskCreate(TaskLow,"High", 2048, nullptr, 1, nullptr);
+
+}
+
+void loop() {
+
+}
